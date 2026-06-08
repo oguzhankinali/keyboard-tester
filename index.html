@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Klavye Testi & Analizi</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="card">
+        <h1>Klavye Test Merkezi</h1>
+        <p class="subtitle">Klavyeden bir tuşa basın ve arka plandaki JavaScript mekanizmasını izleyin.</p>
+
+        <div class="key-display" id="keyDisplay">
+            Başlamak İçin Bir Tuşa Basın
+        </div>
+
+        <div class="info-container">
+            <div class="info-box">
+                <span class="label">e.key (Yazı)</span>
+                <span class="value" id="keyText">-</span>
+            </div>
+            <div class="info-box">
+                <span class="label">e.code (Kod)</span>
+                <span class="value" id="codeText">-</span>
+            </div>
+        </div>
+
+        <div class="multi-press-container">
+            <h3>Şu An Basılı Tutulan Tuşlar (Set Yapısı)</h3>
+            <div class="pressed-keys-list" id="pressedKeys">-</div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
