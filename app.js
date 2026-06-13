@@ -3,29 +3,54 @@ const tus = document.querySelector("#codeText");
 const basilanTuslar = document.querySelector("#pressedKeys");
 const keyDisplay = document.querySelector("#keyDisplay");
 
-const activeKeys = new Set();
+const tusKumesi = new Set();
 
-document.addEventListener("keydown", (e) => {
-    const currentKey = e.key === " " ? "Space" : e.key;
-    keyDisplay.textContent = currentKey;
+// ==========================================
+// 1. Dinleyicileri Tetikleme 
+// ==========================================
+document.addEventListener("keydown", handleKeyDown);
+document.addEventListener("keyup", handleKeyUp);
 
-    harf.textContent = currentKey;
-    tus.textContent = e.code;
+// ==========================================
+// 2. Sadece Arayüzü Güncelleyen Fonksiyon 
+// ==========================================
+function updateUI(mainText, subText, codeText, allKeysText) {
+    keyDisplay.textContent = mainText;
+    harf.textContent = subText;
+    tus.textContent = codeText;
+    basilanTuslar.textContent = allKeysText;
+}
 
-    activeKeys.add(e.code);
-    basilanTuslar.textContent = Array.from(activeKeys).join(" + ");
-
-    keyDisplay.style.transform = "scale(0.95)";
-    setTimeout(() => {
-        keyDisplay.style.transform = "scale(1)";
-    }, 100);
-});
-
-document.addEventListener("keyup", (e) => {
-    activeKeys.delete(e.code);
-    if (activeKeys.size === 0) {
-        basilanTuslar.textContent = "Henüz bir tuşa basılmadı";
-    } else {
-        basilanTuslar.textContent = Array.from(activeKeys).join(" + ");
+// ==========================================
+// 3. Çoklu Tuş Metnini Hazırlayan Fonksiyon 
+// ==========================================
+function getFormattedKeys() {
+    if (tusKumesi.size === 0) {
+        return "Henüz bir tuşa basmadınız.";
     }
+    return Array.from(tusKumesi).join(" + ");
+}
+
+// ==========================================
+// 4. Olay Dinleyicileri 
+// ==========================================
+function handleKeyDown(e) {
+    const currentKey = (e.key === " ") ? "Space" : e.key;
+    const formattedKey = currentKey.toUpperCase();
+
+    tusKumesi.add(e.code);
+
+    updateUI(formattedKey, formattedKey, e.code, getFormattedKeys());
+}
+
+function handleKeyUp(e) {
+    tusKumesi.delete(e.code);
+    basilanTuslar.textContent = getFormattedKeys();
+}
+
+
+
+window.addEventListener("blur", () => {
+    tusKumesi.clear();
+    basilanTuslar.textContent = "Henüz bir tuşa basmadınız.";
 });
