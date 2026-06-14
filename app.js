@@ -3,6 +3,8 @@ const tus = document.querySelector("#codeText");
 const basilanTuslar = document.querySelector("#pressedKeys");
 const keyDisplay = document.querySelector("#keyDisplay");
 
+const clickSes = new Audio("click.mp3");
+
 const tusKumesi = new Set();
 
 // ==========================================
@@ -35,6 +37,8 @@ function getFormattedKeys() {
 // 4. Olay Dinleyicileri 
 // ==========================================
 function handleKeyDown(e) {
+    clickSes.currentTime = 0;
+    clickSes.play();
     const currentKey = (e.key === " ") ? "Space" : e.key;
     const formattedKey = currentKey.toUpperCase();
 
