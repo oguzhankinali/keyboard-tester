@@ -96,3 +96,33 @@ h1 {
     color: #e1e1e6;
     letter-spacing: 2px;
 }
+
+.audio-btn {
+    background-color: #1e1e24;
+    color: #00f2fe;
+    border: 1px solid #00f2fe;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    margin-bottom: 15px;
+}
+
+.audio-btn:hover {
+    background-color: #00f2fe;
+    color: #121214;
+    box-shadow: 0 0 10px rgba(0, 242, 254, 0.5);
+}
+
+/* Ses kapandığında butonun alacağı pasif hal */
+.audio-btn.muted {
+    color: #ef4444;
+    border-color: #ef4444;
+}
+
+.audio-btn.muted:hover {
+    background-color: #ef4444;
+    color: #121214;
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
+}
